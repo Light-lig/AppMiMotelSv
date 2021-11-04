@@ -42,7 +42,7 @@ const theme2 = extendTheme({
 const App = () => {
   
   return (
-    <NativeBaseProvider theme={theme2}>
+    <NativeBaseProvider>
     <PaperProvider theme={theme}><Routes /></PaperProvider>
     </NativeBaseProvider>
   );
