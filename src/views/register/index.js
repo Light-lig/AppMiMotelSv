@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   ScrollView,
   VStack,
+  useToast,
   Heading,
   FormControl,
   Input,
@@ -15,13 +16,15 @@ import {
   Select,
   CheckIcon,
 } from "native-base";
+
 import { TextInput } from "react-native";
 import styles from "./style";
-import {  Button, HelperText, Snackbar } from "react-native-paper";
+import { Button, HelperText, Snackbar } from "react-native-paper";
 import constantes from "../../constantes/constantes";
 import axios from "axios";
 
 const Register = (props) => {
+  const toast = useToast();
   const [departamentos, setDepartamentos] = useState([]);
   const [dep, setDep] = useState(0);
   const [mun, setMun] = useState(0);
@@ -35,23 +38,25 @@ const Register = (props) => {
     });
   }, []);
 
-  const handleChange = (name,value) => {
-    setSendData({...sendData, [name]:value})
-   
+  const handleChange = (name, value) => {
+    setSendData({ ...sendData, [name]: value });
   };
 
   const submit = () => {
     console.log("bienvenidos", sendData);
     let json = {
-      "correo":sendData.username,
-      "password": sendData.newPassword,
-      "idMunicipio": sendData.municipio,
-      "tipoUser":2
-    }
+      correo: sendData.username,
+      password: sendData.newPassword,
+      idMunicipio: sendData.municipio,
+      tipoUser: 2,
+    };
 
-    axios.post('http://localhost:8080/users/newUser',json)
-    .then((resp)=>console.log(resp))
-
+    axios.post("http://localhost:8080/users/newUser", json).then((resp) => {
+      toast.show({
+        description: "Datos Creados correctamente",
+      });
+      console.log(resp), props.navigation.navigate("Login");
+    });
   };
 
   return (
@@ -62,20 +67,26 @@ const Register = (props) => {
           <FormControl.Label>Username</FormControl.Label>
           <TextInput
             name="username"
-            onChangeText={(text)=>handleChange('username',text)}
+            onChangeText={(text) => handleChange("username", text)}
           />
         </Stack>
       </FormControl>
       <FormControl isRequired>
         <Stack mx="4">
           <FormControl.Label>Password</FormControl.Label>
-          <TextInput secureTextEntry={true} onChangeText={(text)=>handleChange('password',text)} />
+          <TextInput
+            secureTextEntry={true}
+            onChangeText={(text) => handleChange("password", text)}
+          />
         </Stack>
       </FormControl>
       <FormControl isRequired>
         <Stack mx="4">
           <FormControl.Label>confirm password</FormControl.Label>
-          <TextInput secureTextEntry={true} onChangeText={(text)=>handleChange('newPassword',text)} />
+          <TextInput
+            secureTextEntry={true}
+            onChangeText={(text) => handleChange("newPassword", text)}
+          />
         </Stack>
       </FormControl>
       <VStack alignItems="center" space={6}>
@@ -90,7 +101,7 @@ const Register = (props) => {
           }}
           mt={1}
           onValueChange={(itemValue) => {
-            handleChange('departamento',itemValue)
+            handleChange("departamento", itemValue);
             setDep(parseInt(itemValue));
             axios
               .get(`http://localhost:8080/municipios/lista/${itemValue}`)
@@ -124,7 +135,7 @@ const Register = (props) => {
           }}
           mt={1}
           onValueChange={(itemValue) => {
-            handleChange('municipio',itemValue)
+            handleChange("municipio", itemValue);
             setMun(parseInt(itemValue));
           }}
         >
