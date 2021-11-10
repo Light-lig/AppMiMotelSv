@@ -2,15 +2,17 @@ import React from 'react';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Routes from './src/routes';
 import { NativeBaseProvider, extendTheme } from 'native-base';
+import { UserProvider } from './src/store/UserProvider';
+import { NavigationContainer } from '@react-navigation/native';
 
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
     primary: '#9673EB',
-    accent  : '#FFFFFF',
+    accent: '#FFFFFF',
   },
-  dark:true
+  dark: true
 };
 
 const theme2 = extendTheme({
@@ -40,11 +42,17 @@ const theme2 = extendTheme({
 });
 
 const App = () => {
-  
+
   return (
-    <NativeBaseProvider theme={theme2}>
-    <PaperProvider theme={theme}><Routes /></PaperProvider>
-    </NativeBaseProvider>
+
+
+    <UserProvider>
+      <NativeBaseProvider theme={theme2}>
+        <PaperProvider theme={theme}> <NavigationContainer><Routes />    </NavigationContainer></PaperProvider>
+      </NativeBaseProvider>
+    </UserProvider>
+
+
   );
 };
 

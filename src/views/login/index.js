@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, VStack, HStack, Image, Text, Link } from 'native-base';
 import { TextInput, Button, HelperText, Snackbar } from 'react-native-paper';
 import styles from './style';
 import constantes from '../../constantes/constantes';
+import { storeData } from '../../utils/utils.js';
+import { useUser } from '../../store/UserProvider';
 import axios from 'axios';
 const Login = (props) => {
     const [change, setChange] = useState(true);
@@ -11,8 +13,9 @@ const Login = (props) => {
     const [httpError, setHttpError] = useState('');
     const [interaction, setInteration] = useState(false);
     const [interactionPass, setInterationPass] = useState(false);
-
-
+    const {  dispatch } = useUser();
+ 
+   
     const onDismissSnackBar = () => setVisible(false);
     const emptyValue = (valor) => {
         if (valor === '') {
@@ -35,7 +38,10 @@ const Login = (props) => {
         if (!emptyValue(token.usrCorreo) && !correoInvalido() && !emptyValue(token.usrPassword)) {
             axios.post('http://localhost:8080/users/login',token).
             then((response)=>{
-             
+                storeData('user',response.data.usrCorreo);
+                dispatch({ type:'UPDATE_USER',item:{
+                    user:response.data,
+                }})
                 props.navigation.navigate('Home');
             }).catch((err)=>{
                 setHttpError(err.response.data.mensaje);
