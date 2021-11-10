@@ -47,7 +47,7 @@ const App = () => {
 
 
     <UserProvider>
-      <NativeBaseProvider theme={theme2}>
+      <NativeBaseProvider >
         <PaperProvider theme={theme}> <NavigationContainer><Routes />    </NavigationContainer></PaperProvider>
       </NativeBaseProvider>
     </UserProvider>

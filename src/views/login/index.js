@@ -113,12 +113,13 @@ const Login = (props) => {
                         Soy nuevo usuario.{' '}
                     </Text>
                     <Link
+                        onPress={()=>props.navigation.navigate('Register')}
                         _text={{
                             color: 'indigo.500',
                             fontWeight: 'medium',
                             fontSize: 'sm',
                         }}
-                        href="#">
+                       >
                         Quiero mi cuenta
                     </Link>
                 </HStack>

@@ -19,7 +19,7 @@ const CustomNavigationBar = ({ navigation, back }) => {
       <Appbar.Header dark={true}  >
         {(route.name == 'Home' || route.name == 'Login') ? null : <Appbar.BackAction onPress={navigation.goBack} />}
         <Appbar.Content style={{color: '#FFFFFF', fontSize: 21}} title="Mi Motel SV" />
-        {(route.name !== 'Login')?<Menu
+        {(route.name !== 'Login' && route.name !== 'Register')?<Menu
           visible={visible}
           onDismiss={closeMenu}
           anchor={
