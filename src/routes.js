@@ -9,6 +9,7 @@ import CardDetalleMotel from './views/card-detalle-motel';
 import Habitaciones from './views/Habitaciones'
 import DetalleHabitacion from './views/DetalleHabitacion';
 import { useNavigation } from '@react-navigation/native';
+import Register from './views/register/';
 
 const Stack = createNativeStackNavigator();
 const config = {
@@ -67,6 +68,13 @@ function Routes(props) {
             close: config,
           },
         }} />
+                  <Stack.Screen name="Register" component={Register} options={{
+          transitionSpec: {
+            open: config,
+            close: config,
+          },
+        }} />
+
       </Stack.Navigator>
 
     </>
@@ -74,3 +82,4 @@ function Routes(props) {
 }
 
 export default withFooter(Routes);
+   

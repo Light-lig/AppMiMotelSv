@@ -44,6 +44,7 @@ const theme2 = extendTheme({
 const App = () => {
 
   return (
+<<<<<<< HEAD
 
 
     <UserProvider>
@@ -53,6 +54,11 @@ const App = () => {
     </UserProvider>
 
 
+=======
+    <NativeBaseProvider>
+    <PaperProvider theme={theme}><Routes /></PaperProvider>
+    </NativeBaseProvider>
+>>>>>>> 6b9989ae73ae06d631d7d19add343ebc19cc7e15
   );
 };
 
