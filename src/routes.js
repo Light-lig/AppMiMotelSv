@@ -10,6 +10,7 @@ import Habitaciones from './views/Habitaciones'
 import DetalleHabitacion from './views/DetalleHabitacion';
 import { useNavigation } from '@react-navigation/native';
 import Register from './views/register/';
+import Reservaciones from './views/Reservaciones';
 
 const Stack = createNativeStackNavigator();
 const config = {
@@ -69,6 +70,12 @@ function Routes(props) {
           },
         }} />
                   <Stack.Screen name="Register" component={Register} options={{
+          transitionSpec: {
+            open: config,
+            close: config,
+          },
+        }} />
+        <Stack.Screen name="Reservaciones" component={Reservaciones} options={{
           transitionSpec: {
             open: config,
             close: config,

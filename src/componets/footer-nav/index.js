@@ -51,7 +51,7 @@ export default function App(props) {
             opacity={selected === 2 ? 1 : 0.6}
             py="2"
             flex={1}
-            onPress={() => setSelected(2)}
+            onPress={() => {setSelected(2),navigation.navigate("Reservaciones")}}
           >
             <Center>
               <Icon
