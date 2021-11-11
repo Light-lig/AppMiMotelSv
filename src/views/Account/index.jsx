@@ -35,9 +35,7 @@ const Account = (props) => {
         </VStack>
         <VStack space={4} my={5}>
           <Heading>Mis Metodos de Pago</Heading>
-          { console.log(state.paymethod== {}?true:false)}
-            {
-             
+            {           
               state.paymethod !== undefined ?
                 Object.keys(state.paymethod).length === 0 ?
               <Button onPress={() => props.navigation.navigate('PayMethod')}>Agregar</Button>

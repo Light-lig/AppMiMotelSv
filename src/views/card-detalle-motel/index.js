@@ -14,9 +14,7 @@ const CardDetalleMotel = (props) => {
     height="100%"
   >
     <Box>
-      <AspectRatio w="100%" ratio={16 / 9}>
-        <Image source={{ uri: `data:image/jpeg;base64,${motel.moFotoPortada}` }} alt="image base" />
-      </AspectRatio>
+        <Image source={{ uri: `data:image/jpeg;base64,${motel.moFotoPortada}` }} style={{width:'100%', height:200}} alt="image base" />
       <Text bold position="absolute" color="coolGray.50" top="0" m="4">
         {
           motel.moNombre

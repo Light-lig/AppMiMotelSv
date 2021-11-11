@@ -1,7 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Box, AspectRatio, Text,  Stack, Heading, VStack, Button } from 'native-base';
 import {Image} from 'react-native';
+import ModalConfirmacion from '../../componets/modal-confirmacion';
 const CardDetalleHabitacion = (props) => {
+    const [showModal, setShowModal] = useState(false)
+
     const { habitacion } = props.route.params;
 
     const getBgColor = () =>{
@@ -57,13 +60,13 @@ const CardDetalleHabitacion = (props) => {
             <Text color="gray.400">Precio: {habitacion.haPrecio} Timpo: {habitacion.haTiempo}</Text>
             <Button size="lg" bg="violet.500" width="150" style={{ borderRadius: 50, height: 40 }}
                 _text={{ color: 'white', fontWeight: '700', fontSize: 'xs' }}
-
+                    onPress={()=>setShowModal(true)}
             >
                 Reservar
             </Button>
 
         </VStack>
-
+        <ModalConfirmacion showModal={showModal} setShowModal={setShowModal} habitacion={habitacion} />
     </Box>)
 }
 
