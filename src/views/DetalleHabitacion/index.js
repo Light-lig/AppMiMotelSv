@@ -1,14 +1,14 @@
-import React,{useState} from 'react';
-import { Box, AspectRatio, Text,  Stack, Heading, VStack, Button } from 'native-base';
-import {Image} from 'react-native';
+import React, { useState } from 'react';
+import { Box, AspectRatio, Text, Stack, Heading, VStack, Button } from 'native-base';
+import { Image } from 'react-native';
 import ModalConfirmacion from '../../componets/modal-confirmacion';
 const CardDetalleHabitacion = (props) => {
     const [showModal, setShowModal] = useState(false)
 
     const { habitacion } = props.route.params;
 
-    const getBgColor = () =>{
-        switch(habitacion.esId.estEstado){
+    const getBgColor = () => {
+        switch (habitacion.esId.estEstado) {
             case 'Disponible':
                 return 'success.400'
             case 'Reservado':
@@ -26,9 +26,7 @@ const CardDetalleHabitacion = (props) => {
         height="100%"
     >
         <Box>
-            <AspectRatio w="100%" ratio={16 / 9}>
-                <Image source={{ uri: `data:image/jpeg;base64,${habitacion.smFotosList[0].fhFoto}` }} alt="image base" />
-            </AspectRatio>
+                <Image source={{ uri: `data:image/jpeg;base64,${habitacion.smFotosList[0].fhFoto}` }} style={{width:'100%', height:200}} alt="image base" />
             <Text bold position="absolute" color="coolGray.50" top="0" m="4">
                 {
                     habitacion.haNombreHabitacion
@@ -57,16 +55,16 @@ const CardDetalleHabitacion = (props) => {
             </Text>
         </Stack>
         <VStack space={2} px="4" pb="4" alignItems="center">
-            <Text color="gray.400">Precio: {habitacion.haPrecio} Timpo: {habitacion.haTiempo}</Text>
+            <Text color="gray.400">Precio: ${habitacion.haPrecio.toFixed(2)} Timpo: {habitacion.haTiempo}</Text>
             <Button size="lg" bg="violet.500" width="150" style={{ borderRadius: 50, height: 40 }}
                 _text={{ color: 'white', fontWeight: '700', fontSize: 'xs' }}
-                    onPress={()=>setShowModal(true)}
+                onPress={() => setShowModal(true)}
             >
                 Reservar
             </Button>
 
         </VStack>
-        <ModalConfirmacion showModal={showModal} setShowModal={setShowModal} habitacion={habitacion} />
+        <ModalConfirmacion showModal={showModal} setShowModal={setShowModal} habitacion={habitacion} navigation={props.navigation} />
     </Box>)
 }
 

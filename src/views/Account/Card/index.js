@@ -15,10 +15,8 @@ import {
 } from "native-base"
 import { formatWithMask, Masks } from 'react-native-mask-input';
 import { useUser } from "../../../store/UserProvider";
-import { useNavigation } from '@react-navigation/native';
 const CreditCard = (props) => {
   const { data } = props;
-  const navigation = useNavigation();
   const creditCard = data.Tarjeta;
   const [visible, setVisible] = useState()
   const { dispatch, state } = useUser();
@@ -55,7 +53,9 @@ const CreditCard = (props) => {
               }}
               alt="Alternate Text"
               size="xs"
-              
+              resizeMode="cover"
+              borderRadius={5}
+              width={50}
             />
             : ""
         }

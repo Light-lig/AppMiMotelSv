@@ -32,7 +32,7 @@ const Register = (props) => {
   const [municipios, setMunicipios] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/moteles/departamentos").then((resp) => {
+    axios.get(`${constantes.baseUrl}/moteles/departamentos`).then((resp) => {
       console.log(resp);
       setDepartamentos(resp.data);
     });
@@ -51,7 +51,7 @@ const Register = (props) => {
       tipoUser: 2,
     };
 
-    axios.post("http://localhost:8080/users/newUser", json).then((resp) => {
+    axios.post(`${constantes.baseUrl}/users/newUser`, json).then((resp) => {
       toast.show({
         description: "Datos Creados correctamente",
       });
@@ -104,7 +104,7 @@ const Register = (props) => {
             handleChange("departamento", itemValue);
             setDep(parseInt(itemValue));
             axios
-              .get(`http://localhost:8080/municipios/lista/${itemValue}`)
+              .get(`${constantes.baseUrl}/municipios/lista/${itemValue}`)
               .then((res) => {
                 setMunicipios(res.data);
               });

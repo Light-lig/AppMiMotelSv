@@ -3,10 +3,12 @@ import { VStack, Spinner,ScrollView ,Pressable, SimpleGrid } from "native-base"
 import { Searchbar } from 'react-native-paper';
 import CardHabitacion from '../../componets/card-habitacion';
 import useData from '../../customHooks/useData';
+import constantes from "../../constantes/constantes";
+
 const Home = ({navigation, route}) => {
     const { motelId } = route.params;
 
-  const data = useData(`http://localhost:8080/moteles/habitacion/${motelId}`);
+  const data = useData(`${constantes.baseUrl}/moteles/habitacion/${motelId}`);
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => setSearchQuery(query);

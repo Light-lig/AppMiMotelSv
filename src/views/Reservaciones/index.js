@@ -4,16 +4,16 @@ import { Searchbar } from 'react-native-paper';
 import Card from '../../componets/card-reservaciones';
 import useData from '../../customHooks/useData';
 import { useUser } from "../../store/UserProvider";
+import constantes from "../../constantes/constantes";
 const Home = ({ navigation }) => {
 
     const {state } = useUser();
 
-  const data = useData('http://localhost:8080/moteles/reservaciones/'+state.user.usrId);
+  const data = useData(`${constantes.baseUrl}/moteles/reservaciones/${state.user.usrId}`);
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => setSearchQuery(query);
 
-  console.log(data)
   return (
 
     <VStack space={1}  mt={2}>

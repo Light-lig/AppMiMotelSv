@@ -13,7 +13,7 @@ const CustomNavigationBar = ({ navigation, back }) => {
   const route = useRoute();
 
   const cerrarSesion = () =>{
-    dispatch({type:'UPDATE_USER',item:{...state,user:{}}})
+    dispatch({type:'UPDATE_USER',item:{user:{}}})
   }
   return (
       <Appbar.Header dark={true}  >

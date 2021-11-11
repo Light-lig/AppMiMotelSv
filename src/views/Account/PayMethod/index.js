@@ -9,7 +9,6 @@ const PayMethod = (props) => {
   const { dispatch, state } = useUser();
   const { control, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {
-    console.log(data);
 
     dispatch({
       type: "UPDATE_USER",
@@ -93,7 +92,7 @@ const PayMethod = (props) => {
           <Box>
             <FormControl mb="4">
               <FormControl.Label>CVC:</FormControl.Label>
-              <InputFieldCVC name='CVC' control={control} />
+              <InputFieldCVC name='CCV' control={control} />
             </FormControl>
           </Box>
         </VStack>

@@ -1,8 +1,8 @@
 import React from "react";
 import { useUser } from '../../store/UserProvider';
 import { ScrollView, VStack, HStack, Center, Heading, Image, Input, Text,Button, Link } from "native-base";
-import CreditCard from "./Card";
-import { useState } from "react/cjs/react.development";
+import AddPayMethod from "./AddPayMethod";
+
 const Account = (props) => {
   const { state, dispatch } = useUser();
 
@@ -35,14 +35,7 @@ const Account = (props) => {
         </VStack>
         <VStack space={4} my={5}>
           <Heading>Mis Metodos de Pago</Heading>
-            {           
-              state.paymethod !== undefined ?
-                Object.keys(state.paymethod).length === 0 ?
-              <Button onPress={() => props.navigation.navigate('PayMethod')}>Agregar</Button>
-              :
-              <CreditCard data={state.paymethod}/>
-              : ""
-            }
+          <AddPayMethod navigation={props.navigation}/>
         </VStack>
       </ScrollView>
     </>
