@@ -17,7 +17,7 @@ const Home = ({ navigation }) => {
   return (
 
     <VStack space={1}  mt={2}>
-      <Searchbar style={{margin: '5px'}}
+      <Searchbar style={{margin: '10px'}}
         onChangeText={onChangeSearch}
         value={searchQuery}
       />
@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
         <VStack space={1}>
 
             {
-              data.length > 0 ? data.filter(d => d.haId.haNombreHabitacion.toLowerCase().includes(searchQuery.toLowerCase())).map(d => <Pressable key={d.resId} onPress={() => navigation.navigate("DetalleReservaciones", { motel: d })}><Card item={d} key={d.resId} /></Pressable>) : <Spinner accessibilityLabel="Loading posts" />
+              data.length > 0 ? data.filter(d => d.haId.haNombreHabitacion.toLowerCase().includes(searchQuery.toLowerCase())).map(d => <Pressable key={d.resId} onPress={() => navigation.navigate("DetalleReservaciones", { reservaciones: d })}><Card item={d} key={d.resId} /></Pressable>) : <Spinner accessibilityLabel="Loading posts" />
 
             }
 

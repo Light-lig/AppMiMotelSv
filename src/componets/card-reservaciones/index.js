@@ -2,13 +2,12 @@ import React from "react";
 import {
   Box,
   Heading,
-  Image,
   Text,
   VStack,
   Stack,
+  SimpleGrid,
 } from 'native-base';
 
-import {AirbnbRating } from 'react-native-ratings';
 function CardReservaciones(props){
  return(
     <Box
@@ -18,25 +17,53 @@ function CardReservaciones(props){
       _light={{ backgroundColor: 'gray.50' }}
       _dark={{ backgroundColor: 'gray.700' }}
     >
-      <VStack p="4" space={1} >
-        <Stack space={1}>
-          <Heading size='sm' ml="-1">
-            {
-            props.item.resId
-            }
-          </Heading>
-        
+      <VStack p="4" space={1}
+        style={{border: '2px', borderColor:'white', borderStyle: 'solid', margin: '8px'}}
+      >
+        <Stack space={2}  >
+          <SimpleGrid space={5} columns={2} spacing={5}>
+            <Heading size='sm' ml="-1" color='#FFA762'>
+              Tiket No: {
+              props.item.resId
+              }
+            </Heading>
+
+            <Text fontWeight="400" pl={50} isTruncated noOfLines={["2", "2", "2"]}>
+              Fecha: {
+                props.item.fecha            
+              }
+            </Text>
+          </SimpleGrid>
+          
         </Stack>
-        <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]}>
+        <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]} 
+        style={{textAlign: 'center', fontSize: 30, fontWeight: 'bold', fontFamily: 'cursive', color: '#FCFAC3'}}
+        >
           {
             props.item.haId.haNombreHabitacion
-            
           }
         </Text>
-        <VStack alignItems="center" position="absolute" bottom="2" >
-          <AirbnbRating size={10} showRating={false}  jumpValue={0.5} isDisabled={true} />
-
-        </VStack>
+        <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]} style={{textAlign: 'center'}}>
+          {
+            props.item.haId.haTipoDeHabitacion            
+          }
+        </Text>
+        <SimpleGrid space={1} columns={3} >
+          <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]}>
+            {
+              props.item.haId.haTiempo            
+            }
+          </Text>
+          <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]}>
+            Por: $ {
+              props.item.resCantidadApagar            
+            }
+          </Text>
+          <Text fontWeight="400" fontSize='9' pl={90} pt={2} color='#FFA762' isTruncated noOfLines={["2", "2", "2"]}>
+            MiMotelSv
+          </Text>
+        </SimpleGrid>
+        
       </VStack>
     </Box>
     );

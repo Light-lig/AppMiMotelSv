@@ -13,6 +13,7 @@ import Register from "./views/register/";
 import Account from "./views/Account";
 import PayMethod from './views/Account/PayMethod'
 import Reservaciones from './views/Reservaciones';
+import DetalleReservaciones from './views/DetalleReservaciones';
 
 const Stack = createNativeStackNavigator();
 const config = {
@@ -120,6 +121,12 @@ function Routes(props) {
         />
 
         <Stack.Screen name="Reservaciones" component={Reservaciones} options={{
+          transitionSpec: {
+            open: config,
+            close: config,
+          },
+        }} />
+        <Stack.Screen name="DetalleReservaciones" component={DetalleReservaciones} options={{
           transitionSpec: {
             open: config,
             close: config,
