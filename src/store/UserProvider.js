@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { storeData, getData } from '../utils/utils';
 const UserContext = React.createContext(null);
 
-var inicialState = {user:{}};
+var inicialState = {user:{}, paymethod:{}};
 function userReducer(state, action) {
   switch (action.type) {
     case "UPDATE_USER":
