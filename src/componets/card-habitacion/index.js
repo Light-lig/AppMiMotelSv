@@ -8,10 +8,10 @@ import {
   Stack,
   Button
 } from 'native-base';
-
+import constantes from '../../constantes/constantes';
 function CardHabitacion(props){
   const getBgColor = () =>{
-    switch(props.item.esId.estEstado){
+    switch(props.item.estado.est_estado){
         case 'Disponible':
             return 'success.400'
         case 'Reservado':
@@ -38,11 +38,8 @@ function CardHabitacion(props){
             borderTopLeftRadius: 5,
             borderTopRightRadius: 5,
            }}
-            source={{
-              uri:
-              `data:image/jpeg;base64,${props.item.smFotosList[0].fhFoto}`
-                ,
-            }}
+           source={{ uri: `${constantes.baseUrl}/public/habitaciones/${props.item.fotos[0].fh_foto}`  }}
+
             alt="image"
           />
            <Button
@@ -60,18 +57,18 @@ function CardHabitacion(props){
         <Stack space={1}>
           <Heading size='sm' ml="-1">
             {
-            props.item.haNombreHabitacion
-            } {props.item.haNumeroHabitacion}
+            props.item.ha_nombre_habitacion
+            } {props.item.ha_numero_habitacion}
           </Heading>
         
         </Stack>
         <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]}>
           {
-            props.item.haDescripcion
+            props.item.ha_descripcion
           }
         </Text>
         <VStack alignItems="center" position="absolute" bottom="2" >
-        <Text color="gray.400">Precio: {props.item.haPrecio} Tiempo: {props.item.haTiempo}</Text>
+        <Text color="gray.400">Precio: {props.item.ha_precio} Tiempo: {props.item.ha_tiempo}</Text>
 
         </VStack>
       </VStack>

@@ -12,12 +12,12 @@ const ModalConfirmacion = (props) => {
   const toast = useToast()
   const submit = () => {
     let token = {
-      resId: 0,
-      resCantidadPagar: props.habitacion.haPrecio,
+      res_id: 0,
+      res_cantidad_apagar: props.habitacion.ha_precio,
       fecha: new Date(),
       hora: new Date(),
-      haId: props.habitacion.haId,
-      usrId: state.user.usrId
+      ha_id: props.habitacion.ha_id,
+      usr_id: state.user.usr_id
     }
     if (state.paymethod === undefined) {
       toast.show({
@@ -37,13 +37,14 @@ const ModalConfirmacion = (props) => {
       })
       return;
     }
-    if (props.habitacion.esId.estEstado === 'Reservado' || props.habitacion.esId.estEstado === 'Limpieza') {
+    if (props.habitacion.estado.est_estado === 'Reservado' || props.habitacion.estado.est_estado === 'Limpieza') {
       toast.show({
         description: 'Esta habitacion no se encuentra disponible',
       })
       return;
     }
-    axios.post(`${constantes.baseUrl}/moteles/reservar`, token).then((response) => {
+    axios.post(`${constantes.baseUrl}/api/reservar`, token).then((response) => {
+      props.habitacion.estado.est_estado = 'Reservado';
       props.setShowModal(false);
       toast.show({
         description: response.data.mensaje,

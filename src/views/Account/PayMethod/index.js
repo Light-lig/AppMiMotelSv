@@ -67,13 +67,13 @@ const PayMethod = (props) => {
       >
         <VStack space={4} my={1}>
           <Center flex={1} px="3">
-            <Heading size="2xl">Metodo de Pago</Heading>
+            <Heading size="2xl" style={{color:'black'}}>Metodo de Pago</Heading>
           </Center>
         </VStack>
         <VStack space={4} my={2}>
           <Box>
             <FormControl mb="5">
-              <FormControl.Label>No. Tarjeta: </FormControl.Label>
+              <FormControl.Label style={{color:'black'}}>No. Tarjeta: </FormControl.Label>
 
               <Input name="Tarjeta" control={control} />
               
@@ -83,7 +83,7 @@ const PayMethod = (props) => {
         <VStack space={4} my={2}>
           <Box>
             <FormControl mb="5">
-              <FormControl.Label>Fecha de Expiracion:</FormControl.Label>
+              <FormControl.Label style={{color:'black'}}>Fecha de Expiracion:</FormControl.Label>
               <InputField name="FECHA" control={control} />
             </FormControl>
           </Box>
@@ -91,7 +91,7 @@ const PayMethod = (props) => {
         <VStack space={4} my={2}>
           <Box>
             <FormControl mb="4">
-              <FormControl.Label>CVC:</FormControl.Label>
+              <FormControl.Label style={{color:'black'}}>CVC:</FormControl.Label>
               <InputFieldCVC name='CCV' control={control} />
             </FormControl>
           </Box>

@@ -24,7 +24,7 @@ function CardReservaciones(props){
           <SimpleGrid space={5} columns={2} spacing={5}>
             <Heading size='sm' ml="-1" color='#FFA762'>
               Tiket No: {
-              props.item.resId
+              props.item.res_id
               }
             </Heading>
 
@@ -40,23 +40,23 @@ function CardReservaciones(props){
         style={{textAlign: 'center', fontSize: 30, fontWeight: 'bold', fontFamily: 'cursive', color: '#FCFAC3'}}
         >
           {
-            props.item.haId.haNombreHabitacion
+            props.item.habitacion.ha_nombre_habitacion
           }
         </Text>
         <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]} style={{textAlign: 'center'}}>
           {
-            props.item.haId.haTipoDeHabitacion            
+            props.item.habitacion.ha_id_tipo_de_habitacion
           }
         </Text>
         <SimpleGrid space={1} columns={3} >
           <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]}>
             {
-              props.item.haId.haTiempo            
+              props.item.habitacion.ha_tiempo            
             }
           </Text>
           <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]}>
             Por: $ {
-              props.item.resCantidadApagar            
+              props.item.res_cantidad_apagar            
             }
           </Text>
           <Text fontWeight="400" fontSize='9' pl={90} pt={2} color='#FFA762' isTruncated noOfLines={["2", "2", "2"]}>

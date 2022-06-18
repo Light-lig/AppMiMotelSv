@@ -8,7 +8,7 @@ import { useUser } from "../../store/UserProvider";
 import axios from "axios";
 const Login = (props) => {
   const [change, setChange] = useState(true);
-  const [token, setToken] = useState({ usrCorreo: "", usrPassword: "" });
+  const [token, setToken] = useState({ usr_correo: "", password: "" });
   const [visible, setVisible] = useState(false);
   const [httpError, setHttpError] = useState("");
   const [interaction, setInteration] = useState(false);
@@ -27,7 +27,7 @@ const Login = (props) => {
     let reg =
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-    if (!reg.test(token.usrCorreo)) {
+    if (!reg.test(token.usr_correo)) {
       return true;
     }
     return false;
@@ -35,27 +35,30 @@ const Login = (props) => {
 
   const submit = () => {
     if (
-      !emptyValue(token.usrCorreo) &&
+      !emptyValue(token.usr_correo) &&
       !correoInvalido() &&
-      !emptyValue(token.usrPassword)
+      !emptyValue(token.password)
     ) {
-      axios
-        .post(`${constantes.baseUrl}/users/login`, token)
-        .then((response) => {
-          storeData("user", response.data.usrCorreo);
-          dispatch({
-            type: "UPDATE_USER",
-            item: {
-            ...state,
-              user: response.data,
-            },
+      
+        axios
+          .post(`${constantes.baseUrl}/api/login`,token)
+          .then((response) => { 
+            storeData("user", response.data.user.usr_correo);
+            dispatch({
+              type: "UPDATE_USER",
+              item: {
+              ...state,
+                user: response.data.user,
+              },
+            });
+            props.navigation.navigate("Home");
+          })
+          .catch((err) => {
+            console.log(err);
+            setHttpError(err.response.data.mensaje);
+            setVisible(true);
           });
-          props.navigation.navigate("Home");
-        })
-        .catch((err) => {
-          setHttpError(err.response.data.mensaje);
-          setVisible(true);
-        });
+    
     } else {
       setHttpError("Aun faltan cosas que completar.");
       setVisible(true);
@@ -79,16 +82,16 @@ const Login = (props) => {
 
           <TextInput
             error={
-              (emptyValue(token.usrCorreo) || correoInvalido()) && interaction
+              (emptyValue(token.usr_correo) || correoInvalido()) && interaction
             }
             label="username:"
-            value={token.usrCorreo}
+            value={token.usr_correo}
             onChangeText={(text) => {
-              setToken({ ...token, usrCorreo: text });
+              setToken({ ...token, usr_correo: text });
               setInteration(true);
             }}
           />
-          {emptyValue(token.usrCorreo) && interaction ? (
+          {emptyValue(token.usr_correo) && interaction ? (
             <HelperText type="error">{constantes.usuarioVacio}</HelperText>
           ) : (
             <></>
@@ -101,10 +104,10 @@ const Login = (props) => {
           )}
 
           <TextInput
-            error={emptyValue(token.usrPassword) && interactionPass}
+            error={emptyValue(token.password) && interactionPass}
             label="password:"
             secureTextEntry={change}
-            value={token.usrPassword}
+            value={token.password}
             right={
               <TextInput.Icon
                 name="eye"
@@ -114,11 +117,11 @@ const Login = (props) => {
               />
             }
             onChangeText={(text) => {
-              setToken({ ...token, usrPassword: text });
+              setToken({ ...token, password: text });
               setInterationPass(true);
             }}
           />
-          {emptyValue(token.usrPassword) && interactionPass ? (
+          {emptyValue(token.password) && interactionPass ? (
             <HelperText type="error">
               {constantes.contraseniaRequerida}
             </HelperText>

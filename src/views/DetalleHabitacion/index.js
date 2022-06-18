@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Box, AspectRatio, Text, Stack, Heading, VStack, Button } from 'native-base';
 import { Image } from 'react-native';
 import ModalConfirmacion from '../../componets/modal-confirmacion';
+import constantes from  '../../constantes/constantes';
 const CardDetalleHabitacion = (props) => {
     const [showModal, setShowModal] = useState(false)
 
     const { habitacion } = props.route.params;
 
     const getBgColor = () => {
-        switch (habitacion.esId.estEstado) {
+        switch (habitacion.estado.est_estado) {
             case 'Disponible':
                 return 'success.400'
             case 'Reservado':
@@ -26,10 +27,11 @@ const CardDetalleHabitacion = (props) => {
         height="100%"
     >
         <Box>
-                <Image source={{ uri: `data:image/jpeg;base64,${habitacion.smFotosList[0].fhFoto}` }} style={{width:'100%', height:200}} alt="image base" />
+                <Image            source={{ uri: `${constantes.baseUrl}/public/habitaciones/${habitacion.fotos[0].fh_foto}`  }}
+style={{width:'100%', height:200}} alt="image base" />
             <Text bold position="absolute" color="coolGray.50" top="0" m="4">
                 {
-                    habitacion.haNombreHabitacion
+                    habitacion.ha_nombre_habitacion
                 }
             </Text>
             <Button
@@ -47,15 +49,15 @@ const CardDetalleHabitacion = (props) => {
         <Stack space="2" p="4">
             <Heading size={["md", "lg", "md"]} fontWeight="medium">
                 {
-                    habitacion.haNombreHabitacion
-                } {habitacion.haId}
+                    habitacion.ha_nombre_habitacion
+                } {habitacion.ha_numero_habitacion}
             </Heading>
             <Text isTruncated noOfLines={["4", "4", "4"]}>
-                {habitacion.haDescripcion}
+                {habitacion.ha_descripcion}
             </Text>
         </Stack>
         <VStack space={2} px="4" pb="4" alignItems="center">
-            <Text color="gray.400">Precio: ${habitacion.haPrecio.toFixed(2)} Timpo: {habitacion.haTiempo}</Text>
+            <Text color="gray.400">Precio: ${habitacion.ha_precio.toFixed(2)} Timpo: {habitacion.ha_tiempo}</Text>
             <Button size="lg" bg="violet.500" width="150" style={{ borderRadius: 50, height: 40 }}
                 _text={{ color: 'white', fontWeight: '700', fontSize: 'xs' }}
                 onPress={() => setShowModal(true)}

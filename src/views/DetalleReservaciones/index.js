@@ -21,7 +21,7 @@ const CardDetalleReservacion = (props) => {
             
             <Heading size={["md", "lg", "md"]} fontWeight="medium" color='#FFA762'>
                 Tiket No. {
-                    reservaciones.resId
+                    reservaciones.res_id
                 } 
             </Heading>
 
@@ -29,12 +29,12 @@ const CardDetalleReservacion = (props) => {
                 style={{textAlign: 'center', fontSize: 30, fontWeight: 'bold', fontFamily: 'cursive', color: '#FCFAC3'}}
             >
                 {
-                    reservaciones.haId.haNombreHabitacion
+                    reservaciones.habitacion.ha_nombre_habitacion
                 }
             </Text>
             <Text fontWeight="400" noOfLines={["2", "2", "2"]} style={{textAlign: 'center', color: '#FCFAC3'}}>
                 Tipo habitacion: {
-                    reservaciones.haId.haTipoDeHabitacion            
+                    reservaciones.habitacion.haTipoDeHabitacion            
                 }
             </Text>
             <SimpleGrid space={1} columns={2} spacing={1}>
@@ -43,7 +43,7 @@ const CardDetalleReservacion = (props) => {
                 </Text>
                 <Text fontWeight="400" noOfLines={["2", "2", "2"]}>
                     {
-                        reservaciones.haId.haNumeroHabitacion            
+                        reservaciones.habitacion.ha_numero_habitacion            
                     }
                 </Text>
             </SimpleGrid>
@@ -54,7 +54,7 @@ const CardDetalleReservacion = (props) => {
                 </Text>
                 <Text fontWeight="400" noOfLines={["2", "2", "2"]}>
                     {
-                        reservaciones.haId.haTiempo
+                        reservaciones.habitacion.ha_tiempo
                     }
                 </Text>
             </SimpleGrid>
@@ -65,7 +65,7 @@ const CardDetalleReservacion = (props) => {
                 </Text>
                 <Text fontWeight="400" noOfLines={["2", "2", "2"]}>
                     {
-                        reservaciones.resCantidadApagar
+                        reservaciones.res_cantidad_apagar
                     }
                 </Text>
             </SimpleGrid>
@@ -76,7 +76,7 @@ const CardDetalleReservacion = (props) => {
                 </Text>
                 <Text fontWeight="400" noOfLines={["2", "2", "2"]}>
                     {
-                        reservaciones.usrId.munId.munNombre
+                        reservaciones.user.mun_id
                     }
                 </Text>
             </SimpleGrid>
@@ -85,7 +85,7 @@ const CardDetalleReservacion = (props) => {
             </Text>
             <Text fontWeight="400" noOfLines={["2", "2", "2"]}>
                 {
-                    reservaciones.haId.haDescripcion
+                    reservaciones.habitacion.ha_descripcion
                 }
             </Text>
         </Stack>

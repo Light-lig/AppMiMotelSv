@@ -30,11 +30,11 @@ const Account = (props) => {
 
         </VStack>
         <VStack space={4}>
-          <Heading>Correo:</Heading>
-          <Input size="lg" value={state.user.usrCorreo} isDisabled={true} />
+          <Heading style={{color:'black'}}>Correo:</Heading>
+          <Input size="lg" value={state.user.usr_correo} isDisabled={true} />
         </VStack>
-        <VStack space={4} my={5}>
-          <Heading>Mis Metodos de Pago</Heading>
+        <VStack  space={4} my={5}>
+          <Heading style={{color:'black'}}>Mis Metodos de Pago</Heading>
           <AddPayMethod navigation={props.navigation}/>
         </VStack>
       </ScrollView>

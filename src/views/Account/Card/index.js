@@ -49,7 +49,7 @@ const CreditCard = (props) => {
           visible ?
             <Image
               source={{
-                uri: "https://leadership.ng/wp-content/uploads/2021/07/Visa.jpg",
+                uri: "https://w7.pngwing.com/pngs/400/28/png-transparent-credit-card-computer-icons-visa-electron-bank-curio-blue-text-rectangle.png",
               }}
               alt="Alternate Text"
               size="xs"
@@ -61,19 +61,13 @@ const CreditCard = (props) => {
         }
         <VStack>
           <Text
-            _dark={{
-              color: "warmGray.50",
-            }}
-            color="coolGray.800"
+         style={{color:'black'}}
             bold
           >
             {obfuscated}
           </Text>
           <Text
-            color="coolGray.600"
-            _dark={{
-              color: "warmGray.200",
-            }}
+         style={{color:'black'}}
           >
             {props.data.FECHA}
           </Text>

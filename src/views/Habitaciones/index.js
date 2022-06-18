@@ -8,7 +8,7 @@ import constantes from "../../constantes/constantes";
 const Home = ({navigation, route}) => {
     const { motelId } = route.params;
 
-  const data = useData(`${constantes.baseUrl}/moteles/habitacion/${motelId}`);
+  const data = useData(`${constantes.baseUrl}/api/habitaciones/${motelId}`);
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => setSearchQuery(query);
@@ -32,7 +32,7 @@ const Home = ({navigation, route}) => {
 
               <SimpleGrid  space={3} columns={2} spacing={2}>
                 {
-                  data.length > 0? data.filter(d=>d.haNombreHabitacion.toLowerCase().includes(searchQuery.toLowerCase())).map(d=><Pressable style={{height:'100%'}} key={d.haId} onPress={()=>navigation.navigate("Reservar",{habitacion:d})}><CardHabitacion item={d} key={d.haId} /></Pressable>) :<Spinner accessibilityLabel="Loading posts" />
+                  Object.keys(data).length > 0? data.habitaciones.filter(d=>d.ha_nombre_habitacion.toLowerCase().includes(searchQuery.toLowerCase())).map(d=><Pressable style={{height:'100%'}} key={d.ha_id} onPress={()=>navigation.navigate("Reservar",{habitacion:d})}><CardHabitacion item={d} key={d.ha_id} /></Pressable>) :<Spinner accessibilityLabel="Loading posts" />
      
                 }
                 

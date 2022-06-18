@@ -9,7 +9,7 @@ const Home = ({ navigation }) => {
 
     const {state } = useUser();
 
-  const data = useData(`${constantes.baseUrl}/moteles/reservaciones/${state.user.usrId}`);
+  const data = useData(`${constantes.baseUrl}/api/reservaciones/${state.user.usr_id}`);
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => setSearchQuery(query);
@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
         <VStack space={1}>
 
             {
-              data.length > 0 ? data.filter(d => d.haId.haNombreHabitacion.toLowerCase().includes(searchQuery.toLowerCase())).map(d => <Pressable key={d.resId} onPress={() => navigation.navigate("DetalleReservaciones", { reservaciones: d })}><Card item={d} key={d.resId} /></Pressable>) : <Spinner accessibilityLabel="Loading posts" />
+              Object.keys(data).length > 0 ? data.reservaciones.filter(d => d.habitacion.ha_nombre_habitacion.toLowerCase().includes(searchQuery.toLowerCase())).map(d => <Pressable key={d.res_id} onPress={() => navigation.navigate("DetalleReservaciones", { reservaciones: d })}><Card item={d} key={d.res_id} /></Pressable>) : <Spinner accessibilityLabel="Loading posts" />
 
             }
 

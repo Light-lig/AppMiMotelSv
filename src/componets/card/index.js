@@ -7,7 +7,8 @@ import {
   VStack,
   Stack,
 } from 'native-base';
-
+import constantes from "../../constantes/constantes";
+ 
 import {AirbnbRating } from 'react-native-ratings';
 import { getRating } from '../../utils/utils'
 function CardComponent(props){
@@ -31,8 +32,7 @@ function CardComponent(props){
            }}
             source={{
               uri:
-              `data:image/jpeg;base64,${props.item.moFotoPortada}`
-                ,
+              `${constantes.baseUrl}/public/moteles/${props.item.mo_foto_portada}`                ,
             }}
             alt="image"
           />
@@ -42,18 +42,18 @@ function CardComponent(props){
         <Stack space={1}>
           <Heading size='sm' ml="-1">
             {
-            props.item.moNombre
+            props.item.mo_nombre
             }
           </Heading>
         
         </Stack>
         <Text fontWeight="400" isTruncated noOfLines={["2", "2", "2"]}>
           {
-            props.item.moDireccion
+            props.item.mo_direccion
           }
         </Text>
         <VStack alignItems="center" position="absolute" bottom="2" >
-          <AirbnbRating size={10} showRating={false}  jumpValue={0.5} isDisabled={true} defaultRating={getRating(props.item.smValoracionList)} />
+          <AirbnbRating size={10} showRating={false}  jumpValue={0.5} isDisabled={true} defaultRating={getRating(props.item.valoracion)} />
 
         </VStack>
       </VStack>
